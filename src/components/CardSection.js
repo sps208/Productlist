@@ -12,7 +12,7 @@ const style = StyleSheet.create({
 class CardSection extends Component {
     render(){
       return(
-        <View style={ style.card }>
+        <View style={ style.cardSection }>
          { this.props.children }
         </View>
       );

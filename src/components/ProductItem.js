@@ -1,30 +1,29 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Linking } from 'react-native';
 
 import Card from './Card'
 import CardSection from './CardSection';
+import Button from './Button';
+
+const style = StyleSheet.create({
+    productImage: {
+        height: 300,
+        flex: 1
+    },
+    productName: {
+        flex: 1,
+        fontSize: 18
+    },
+    productPrice: {
+        width: 100,
+        textAlign: 'right',
+        fontSize: 18,
+        color: 'navy' 
+    }
+
+})
 
 class ProductItem extends Component {
-    
-    const style = StyleSheet.create({
-        productImage: {
-            flex: 1,
-            height: 300
-        },
-        productName: {
-            flex: 1,
-            fontSize: 18
-        },
-        productPrice: {
-            width: 100,
-            textAlign: 'right',
-            fontsize: 18,
-            color: 'navy' 
-        }
-
-    })
-
-
     getPricedFormatted(price) {
         if (price) {
             const pricedFormatted = price
@@ -40,7 +39,7 @@ class ProductItem extends Component {
 
 
     render(){
-        const { name, image, price, actionlink } = this.props.product
+        const { name, image, price, actionlink } = this.props.product;
 
       return(
         <Card>
@@ -48,12 +47,13 @@ class ProductItem extends Component {
                 <Image style={ style.productImage } source= { { uri:image } } /> 
             </CardSection>
             <CardSection>
-                <Text  style={ style.productName }>
-                { name }
-                </Text>
-                <Text  style={ style.productPrice }>
-                    { this.getPricedFormatted(price) }
-                </Text>
+                <Text style={ style.productName }>{ name }</Text>
+                <Text  style={ style.productPrice }>{ this.getPricedFormatted(price) }</Text>
+            </CardSection>
+            <CardSection>
+                <Button onPress={ () => Linking.openURL(actionlink)}>
+                    Buy now
+                </Button>
             </CardSection>
         </Card>
       );
