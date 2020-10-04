@@ -7,7 +7,7 @@ class App extends Component {
     render(){
       return(
         <View>
-          <Header />
+          <Header title="Product list"/>
           <Text>Hello World</Text>
         </View>
       );
